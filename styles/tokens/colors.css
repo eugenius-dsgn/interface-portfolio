@@ -1,0 +1,11 @@
+/*Семантические цветовые токены — для чего используются, так и называются. Ссылаются на значение из palette.css*/
+
+:root {
+    color-scheme: light;
+    --bg: (var(--white));
+}
+
+.dark {
+    color-scheme: dark;
+    --bg: (var(--white));
+}
