@@ -3,8 +3,8 @@
 }
 
 body {
-  font-family: 'GolosTextWebVF';
-  margin: 0px;
+  font-family: 'GolosTextVF';
+  margin: 0;
   color: var(--on-surface);
   background-color: var(--surface);
   scroll-behavior: smooth;

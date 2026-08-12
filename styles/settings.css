@@ -1,7 +1,7 @@
 /* Шрифт */
 
 @font-face {
-	font-family: 'GolosTextWebVF';
+	font-family: 'GolosTextVF';
 	src: url('fonts/golos-text_vf.woff2') format('woff2'), url('fonts/golos-text_vf.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
