@@ -1,1 +1,37 @@
 /* Шрифт */
+
+@font-face {
+	font-family: 'GolosTextWebVF';
+	src: 
+		url('fonts/golos-text_vf.woff2') format('woff2'),
+		url('fonts/golos-text_vf.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+html {
+  --mobile-viewport-min: 320;
+  --mobile-desktop-breakpoint: 768;
+  --desktop-viewport-max: 1500;
+
+  --mobile-font-size-min: 16;
+  --mobile-font-size-max: 32;
+  
+  --desktop-font-size-min: 16;
+  --desktop-font-size-max: 24;
+
+  font-size: calc(var(--mobile-font-size-min) * 1px);
+  line-height: 1.25;
+
+  @media (min-width: 320px) {    
+    font-size: calc(var(--mobile-font-size-min) * 1px + (var(--mobile-font-size-max) - var(--mobile-font-size-min)) * ((100vw - var(--mobile-viewport-min) * 1px) / (var(--mobile-desktop-breakpoint) - var(--mobile-viewport-min))));
+  }
+
+  @media (min-width: 768px) {    
+    font-size: calc(var(--desktop-font-size-min) * 1px + (var(--desktop-font-size-max) - var(--desktop-font-size-min)) * ((100vw - var(--mobile-desktop-breakpoint) * 1px) / (var(--desktop-viewport-max) - var(--mobile-desktop-breakpoint))));
+  }
+
+  @media (min-width: 1500px) {    
+    font-size: calc(var(--desktop-font-size-max) * 1px);
+  }
+}
