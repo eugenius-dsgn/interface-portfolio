@@ -2,12 +2,12 @@
 
 @font-face {
 	font-family: 'GolosTextVF';
-	src: url('fonts/golos-text_vf.woff2') format('woff2'), url('fonts/golos-text_vf.woff') format('woff');
+  src: url('../fonts/golos-text_vf.woff2') format('woff2'), url('../fonts/golos-text_vf.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
-html {
+/*html {
   --mobile-viewport-min: 320;
   --mobile-desktop-breakpoint: 768;
   --desktop-viewport-max: 1500;
@@ -32,4 +32,4 @@ html {
   @media (min-width: 1500px) {    
     font-size: calc(var(--desktop-font-size-max) * 1px);
   }
-}
+}*/

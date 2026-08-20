@@ -5,34 +5,31 @@
   }
 } 
 
-.v-spacer.s {
-  display: block;
-  height: 1em;
-  
-  @media (max-width: 768px) {
-    height: 0.5em;    
+.v-spacer {
+  display: block; 
+  &.s {
+    height: 1em;
+    @media (max-width: 768px) {
+      height: 0.5em;    
+    }
   }
-}
-
-.v-spacer.m {
-  display: block;
-  height: 2em;
-  @media (max-width: 768px) {
-    height: 1em;    
+  &.m {
+    height: 2em;
+    @media (max-width: 768px) {
+      height: 1em;    
+    }
   }
-}
-
-.v-spacer.l {
-  display: block;
-  height: 4em;
-  @media (max-width: 768px) {
-    height: 2em;    
+  &.l {
+    height: 3em;
+    @media (max-width: 768px) {
+      height: 1.5em;
+    }
   }
-}
-.v-spacer.xl {
-  display: block;
-  height: 8em;
-  @media (max-width: 768px) {
-    height: 0.5em;    
+  &.xl {
+    display: block;
+    height: 5em;
+    @media (max-width: 768px) {
+      height: 2.5em;
+    }
   }
 }
