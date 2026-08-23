@@ -1,4 +1,4 @@
-// Loading Screen Script
+/* Loading Screen Script */
 
 const overlay = document.querySelector('.overlay');
 const progressIndicator = document.querySelector('.progress-indicator');

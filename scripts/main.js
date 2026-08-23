@@ -1,1 +1,0 @@
-// Main page interactions will live here.

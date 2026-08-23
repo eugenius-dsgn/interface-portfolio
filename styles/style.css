@@ -11,26 +11,20 @@ body {
   scroll-behavior: smooth;
 }
 
+figure {
+  margin: 0;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 h1 {
   font-size: 4em;
   letter-spacing: -0.02em;
   line-height: 1;
   font-weight: 700;
   margin: 0.5em 0;
-}
-
-.overlay {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5em;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--surface);
-  color: var(--on-surface);
-  text-align: center;
 }
