@@ -14,7 +14,7 @@
         transform: translateY(100%);
         transition: transform 0.25s ease-in-out;
         & h1 {
-            margin: 0.25em 0;
+            margin: 0.2em 0;
         }
     }
 }
@@ -62,37 +62,42 @@
         left: 50%;
         transform: translate(-50%, -50%);
         transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-    }
-
-    & .video-play-toggle {
-      display: flex;
-      justify-content: center;
-      padding: 1.5em;
-      background-color: color-mix(in srgb, var(--black) 60%, transparent);
-      border-radius: 50%;
-      border: none;
-      cursor: pointer;
-
-      & .button-icons-wrapper {
-        position: relative;
-        width: 5em;
-        height: 5em;
-
-        & svg {
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          display: block;
-          fill: var(--white);
-          opacity: 0;
-          transition: opacity 0s ease-in-out;
+        
+        & .video-play-toggle {
+          display: flex;
+          justify-content: center;
+          padding: 1.5em;
+          background-color: color-mix(in srgb, var(--black) 60%, transparent);
+          border-radius: 50%;
+          border: none;
+          cursor: pointer;
+    
+          & .button-icons-wrapper {
+            position: relative;
+            width: 5em;
+            height: 5em;
+    
+            & svg {
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              position: absolute;
+              display: block;
+              fill: var(--white);
+              opacity: 0;
+              transition: opacity 0s ease-in-out;
+              }
+    
+              & #play {
+                  opacity: 1;
+              }
           }
+        }
 
-          & #play {
-              opacity: 1;
-          }
-      }
+        & p {
+            color: var(--white);
+            text-align: center;
+        }
     }
 
     &.is-playing {
@@ -119,3 +124,4 @@
         }
     }
 }
+

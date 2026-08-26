@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/settings.css" />
     <link rel="stylesheet" href="styles/tokens/palette.css" />
     <link rel="stylesheet" href="styles/tokens/colors.css" />
+    <link rel="stylesheet" href="styles/tokens/scales.css" />
     <link rel="stylesheet" href="styles/layout.css" />
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/interactive.css" />
@@ -22,7 +23,7 @@
         <div class="progress-indicator"></div>
       </div>
     </div>
-    <div class="introduction">
+    <div id="introduction" class="wrapper ultra-wide">
       <figure id="introduction-video" class="video-player">
         <video class="long" playsinline>
           <source src="assets/video/about.webm" type="video/webm">
@@ -50,6 +51,15 @@
           <p></p>
         </div>
       </figure>
+    </div>
+    <div class="v-spacer xxl"></div>
+    <div class="wrapper"> 
+      <div class="tablist" role="tablist"> 
+        <button id="hr" class="text tab" type="button" role="tab" aria-label="Заголовок для эйчара">Для эйчара</button>
+        <button id="design-lead" class="text tab" type="button" role="tab" aria-label="Заголовок для дизайн-лида">дизайн-лида</button>
+        <button id="head-manager" class="text tab" type="button" role="tab" aria-label="Заголовок для руководителя">руководителя</button>
+      </div>
+      <p id="introduction-display" class="display">Display</p>
     </div>
     <script src="scripts/loadingScreen.js"></script>
     <script src="scripts/videoPlayer.js"></script>

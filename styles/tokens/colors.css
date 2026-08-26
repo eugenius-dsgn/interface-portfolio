@@ -2,11 +2,15 @@
 
 :root {
     color-scheme: light;
-    --surface: var(--white);
+    --surface: var(--gray-100-warm);
     --on-surface: var(--gray-900);
     --on-surface-variant: var(--gray-700);
     --primary: var(--purple);
+    --on-primary: var(--white);
     --available: var(--green-900);
+    --link: var(--blue-900);
+    --mark: var(--yellow);
+    --on-mark: var(--gray-900);
 }
 
 .dark {
@@ -15,5 +19,9 @@
     --on-surface: var(--gray-100);
     --on-surface-variant: var(--gray-300);
     --primary: var(--yellow);
+    --on-primary: var(--gray-900);
     --available: var(--green-100);
+    --link: var(--blue-100);
+    --mark: var(--yellow);
+    --on-mark: var(--gray-900);
 }

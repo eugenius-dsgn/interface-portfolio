@@ -29,6 +29,13 @@ const minSwapTime = 500;
 const maxSwapTime = 800;
 let currentStatusIndex = 0;
 
+const releaseLoadingState = function() {
+  if (!document.body.classList.contains('is-loading')) {
+    return;
+  }
+  document.body.classList.remove('is-loading');
+};
+
 const getSwapTime = function() {
   let progress = (currentStatusIndex - 1) / (statusesCount-1);
   return Math.max(minSwapTime, maxSwapTime - (maxSwapTime - minSwapTime) * progress);
@@ -44,6 +51,9 @@ const showNextStatus = function() {
   if (currentStatusIndex === statusesCount) {
     setTimeout(function() {
       overlay.style.transform = 'translateY(-100%)';
+      overlay.addEventListener('transitionend', function() {
+        document.body.classList.remove('is-loading');
+      }, { once: true });
     }, minSwapTime);
     return;
   }
@@ -51,5 +61,6 @@ const showNextStatus = function() {
 };
 
 window.addEventListener('load', function(){
+  document.body.classList.add('is-loading');
   showNextStatus();
 });

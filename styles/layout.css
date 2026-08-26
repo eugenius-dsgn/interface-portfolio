@@ -2,9 +2,12 @@
   position: relative;
   width: 100%;
   margin: 0 auto;
-  padding: 1.5em;
+  padding: 0 1.5em;
   @media (max-width: 768px) {
     padding: 1em;
+  }
+  &.ultra-wide {
+    padding:0;
   }
 }
 
@@ -15,17 +18,50 @@
   }
 } 
 
+.v-spacer {
+  display: block; 
+  height: var(--spacer-s);
+
+  &.s {
+    height: var(--spacer-s);
+  }
+  &.m {
+    height: var(--spacer-m);
+    @media (max-width: 768px) {
+      height: var(--spacer-s);    
+    }
+  }
+  &.l {
+    height: var(--spacer-l);
+    @media (max-width: 768px) {
+      height: var(--spacer-m);
+    }
+  }
+  &.xl {
+    height: var(--spacer-xl);
+    @media (max-width: 768px) {
+      height: var(--spacer-l);
+    }
+  }
+  &.xxl {
+    height: var(--spacer-xxl);
+    @media (max-width: 768px) {
+      height: var(--spacer-xl);
+    }
+  }
+}
+
 .overlay {
-  position: absolute;
+  position: fixed;
   padding: 1.5em;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100vh;
   background-color: var(--surface);
   color: var(--on-surface);
   text-align: center;
-  z-index: 1;
+  z-index: 9999;
+  pointer-events: auto;
   &.loading-screen {
     display: flex;
     flex-direction: column;
@@ -39,34 +75,5 @@
     align-items: center;
   }
   &.error {
-  }
-}
-
-.v-spacer {
-  display: block; 
-  &.s {
-    height: 1em;
-    @media (max-width: 768px) {
-      height: 0.5em;    
-    }
-  }
-  &.m {
-    height: 2em;
-    @media (max-width: 768px) {
-      height: 1em;    
-    }
-  }
-  &.l {
-    height: 3em;
-    @media (max-width: 768px) {
-      height: 1.5em;
-    }
-  }
-  &.xl {
-    display: block;
-    height: 5em;
-    @media (max-width: 768px) {
-      height: 2.5em;
-    }
   }
 }

@@ -30,6 +30,10 @@ videoLong.addEventListener('ended', function () {
 });
 
 videoPlayer.addEventListener('click', function () {
+  if (document.body.classList.contains('is-loading')) {
+    return;
+  }
+
   if (isPlaying) {
     videoLong.pause();
     videoPlayer.classList.remove('is-playing');

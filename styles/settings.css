@@ -7,6 +7,17 @@
 	font-style: normal;
 }
 
+:root {
+  --density: 1.2;
+}
+
+body {
+  font-family: 'GolosTextVF';
+  font-size: 16px;
+  line-height: var(--density);
+}
+
+
 /*html {
   --mobile-viewport-min: 320;
   --mobile-desktop-breakpoint: 768;
@@ -15,11 +26,11 @@
   --mobile-font-size-min: 16;
   --mobile-font-size-max: 32;
   
-  --desktop-font-size-min: 16;
+  --desktop-font-size-min: 12;
   --desktop-font-size-max: 24;
 
   font-size: calc(var(--mobile-font-size-min) * 1px);
-  line-height: 1.25;
+  line-height: 1.2;
 
   @media (min-width: 320px) {    
     font-size: calc(var(--mobile-font-size-min) * 1px + (var(--mobile-font-size-max) - var(--mobile-font-size-min)) * ((100vw - var(--mobile-viewport-min) * 1px) / (var(--mobile-desktop-breakpoint) - var(--mobile-viewport-min))));

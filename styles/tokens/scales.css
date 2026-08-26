@@ -1,0 +1,26 @@
+:root {
+  --spacer-s: calc(var(--density) * 0.5rem);
+  --spacer-m: calc(var(--density) * 1.5rem);
+  --spacer-l: calc(var(--density) * 2.5rem);
+  --spacer-xl: calc(var(--density) * 5rem);
+  --spacer-xxl: calc(var(--density) * 10em);
+
+  --font-weight-emphasis:700;
+  --font-weight-default:500;
+
+  --gap-s: 0.5rem;
+  --gap-m: 1rem;
+  --gap-l: 1.5rem;
+
+  --radius-s: 0.2em;
+  --radius-m: 0.3em;
+  --radius-pill: 9999px;
+
+  --border-width-s: 1px;
+  --border-width-m: 2px;
+
+  --duration-instant: 0s;
+  --duration-fast: 0.15s;
+  --duration-base: 0.5s;
+  --easing-base: ease;
+}
