@@ -47,7 +47,6 @@
      left: 0;
      top: 0;
      opacity: 0;
-     z-index: 1;
      transition: opacity 0.2s ease-in-out;
     }
 
@@ -62,6 +61,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+        z-index:1;
         
         & .video-play-toggle {
           display: flex;
@@ -124,4 +124,3 @@
         }
     }
 }
-

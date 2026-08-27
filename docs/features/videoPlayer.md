@@ -2,90 +2,85 @@
 
 ## Purpose
 
-The video player presents the about me video on the home page. It starts with a muted loop preview and switches to the full video when the visitor clicks the player. A second click pauses the full video and returns the preview.
+Home page player shows a loop preview by default and switches to the main video on click. A second click pauses the main video and returns to preview-like behavior.
 
-The implementation is currently specific to the home page. It will later be expanded into a reusable player that can serve both the home page and project pages.
+Player interaction is protected while loading screen is active.
 
 ## Entry Points
 
 - Markup: `index.html`
 - Behavior: `scripts/videoPlayer.js`
-- Interactive styles: `styles/interactive.css`
-
-`index.html` loads `scripts/videoPlayer.js` after `scripts/loadingScreen.js` and before `scripts/main.js`.
+- Visual states: `styles/interactive.css`
+- Loading interaction lock: `styles/style.css` and `scripts/loadingScreen.js`
 
 ## Markup Contract
 
-The script requires the following elements inside `#introduction-video`:
+Required elements inside `#introduction-video`:
 
-```html
-<figure id="introduction-video" class="video-player">
-  <video class="long" playsinline>...</video>
-  <video class="loop" muted autoplay loop playsinline>...</video>
-  <div class="video-controls">
-    <button type="button" class="video-play-toggle" aria-label="Play">
-      <div class="button-icons-wrapper">
-        <svg id="play">...</svg>
-        <svg id="pause">...</svg>
-      </div>
-    </button>
-    <p></p>
-  </div>
-</figure>
-```
+- `video.long`
+- `video.loop`
+- `.video-controls`
+- `.video-play-toggle`
+- `.video-controls p`
 
-- `.long` is the main video.
-- `.loop` is the muted preview video.
-- `.video-controls p` displays the main video's full or remaining duration in seconds.
-- `.video-play-toggle` contains the visual Play and Pause icons. The click handler is registered on the full player container, so both the button and the surrounding video area use the same interaction.
+## Initial State
 
-## Initial Visual State
+- Loop video starts with `autoplay`, `muted`, and `loop`.
+- Main video is present but hidden via opacity.
+- Controls are centered over the player.
 
-The loop preview is visible and starts automatically through its `autoplay`, `muted`, and `loop` attributes. The full video is absolutely positioned above it with zero opacity.
+## Runtime State Model
 
-`.video-controls` is positioned at the centre of the player with:
+- `isPlaying` is synchronized by main video `play` and `pause` events.
+- On `ended`, player removes `.is-playing` and restores full duration text.
 
-```css
-transform: translate(-50%, -50%);
-```
+## Click Handling
 
-The Play icon starts visible, while the Pause icon has zero opacity.
+Click listener is attached to full player container.
 
-## Behavior
+Before any play or pause action, handler checks loading lock:
 
-1. On `window.load`, the script reads `videoLong.duration`, stores it in `videoDuration`, displays its floored value followed by `с`, and sets `isPlaying` to `false`.
-2. When the main video emits `play`, `isPlaying` becomes `true`.
-3. When it emits `pause`, `isPlaying` becomes `false`.
-4. When the main video emits `ended`, the player removes `.is-playing` and restores the full duration display.
-5. A click on `#introduction-video` checks `isPlaying`:
-   - When `true`, it pauses the main video, removes `.is-playing`, enables looping for the preview video, and displays the floored remaining duration.
-   - When `false`, it starts the main video, adds `.is-playing`, and disables looping for the preview video.
+- if `body` has `is-loading`, handler exits immediately.
 
-The displayed remaining time is calculated as:
+This guarantees no accidental start while loading overlay is active.
 
-$$
-\text{remainingSeconds} = \left\lfloor \text{videoDuration} - \text{videoLong.currentTime} \right\rfloor
-$$
+## Loading-Time Interaction Block
+
+There are two independent protections:
+
+1. CSS level
+- while `body.is-loading`, `.video-player` has `pointer-events: none`
+
+2. JS level
+- click handler returns early when `body.is-loading` is present
+
+Together they prevent race conditions from layering or transition timing.
 
 ## Playing State
 
-Adding `.is-playing` to `.video-player` changes the presentation:
+When `.is-playing` is added:
 
-- `.video-controls` fades out and scales down while remaining centred with `translate(-50%, -50%) scale(0.5)`.
-- The Play icon becomes transparent and the Pause icon becomes visible.
-- `.long` transitions to full opacity above the preview.
+- controls fade and scale down
+- play icon hides and pause icon appears
+- main video opacity transitions in
 
-Removing `.is-playing` returns the control and main video to their initial visual state.
+When `.is-playing` is removed, visual state returns to preview layout.
+
+## Time Display
+
+- On load: full duration in seconds
+- On pause by click: remaining seconds using floored `videoDuration - currentTime`
+
+$$
+remainingSeconds = \lfloor videoDuration - videoLong.currentTime \rfloor
+$$
 
 ## Constraints
 
-- The script is a regular script, not a JavaScript module. Its top-level variable names must not be redeclared by other regular scripts.
-- The selectors in the markup are a contract with `scripts/videoPlayer.js`; rename them only together with the script.
-- `videoLong.duration` is read on `window.load`. The video metadata must be available by that point for the initial duration to be valid.
-- `videoLoop.loop` controls whether the preview repeats, but the current script does not explicitly call `videoLoop.pause()` or `videoLoop.play()`.
+- Script assumes one player with selector `#introduction-video`.
+- Script is classic non-module JavaScript in shared global scope.
+- Metadata availability at `window.load` affects initial duration value.
 
 ## Future Reuse
 
-The current implementation assumes a single home-page player with the fixed selector `#introduction-video`. Before it is used on project pages, it should be refactored to initialise an individual player from a passed container element or a shared class selector.
-
-The reusable version should avoid global state, support multiple player instances on one page, and make page-specific details configurable: video sources, poster, preview-loop behaviour, controls, and duration display. The markup contract should remain small and consistent so the home page and project pages can share the same player behavior and styles.
+For multi-instance reuse, refactor initialization to accept container nodes and avoid single global selector.
