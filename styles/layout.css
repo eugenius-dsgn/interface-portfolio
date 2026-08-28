@@ -77,3 +77,14 @@
   &.error {
   }
 }
+
+#logos {
+  display: grid;
+  --column-count:3;
+  grid-template-columns: repeat(var(--column-count), 1fr);
+  grid-auto-flow: row;
+
+  @media (max-width: 768px) {
+    --column-count:2;
+  }
+}
