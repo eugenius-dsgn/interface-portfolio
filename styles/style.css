@@ -65,6 +65,11 @@ p {
   margin-top: 0;
   margin-bottom: calc(var(--density) * 0.4em);
 
+  &.indent {
+    text-indent: hanging var(--paragraph-indent);
+    margin-bottom:0;
+  } 
+
   &.loud {
     font-size: 2.25em;
     line-height: 1.2;
@@ -92,6 +97,8 @@ p {
 }
 
 a {
+  margin-top: 0;
+  margin-bottom: calc(var(--density) * 0.4em);
   color: var(--on-surface);
   text-decoration: underline;
   will-change: color;
@@ -166,8 +173,14 @@ button {
 
 #introduction-display {
   text-align: center;
-
   @media (max-width: 768px) {
     text-align: left;
   }
 }
+
+#logos {
+  & svg {
+    fill: var(--on-surface-variant);
+  }
+}
+    

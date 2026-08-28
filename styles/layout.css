@@ -6,7 +6,7 @@
   @media (max-width: 768px) {
     padding: 1em;
   }
-  &.ultra-wide {
+  &.ultrawide {
     padding:0;
   }
 }
@@ -83,8 +83,64 @@
   --column-count:3;
   grid-template-columns: repeat(var(--column-count), 1fr);
   grid-auto-flow: row;
-
+  
   @media (max-width: 768px) {
     --column-count:2;
+  }
+}
+
+#teamate-feedback {
+  display: grid;
+  grid-template-columns: [start] repeat(3, 1fr) [center] 1fr [content] repeat(2, 1fr) [end];
+  grid-auto-flow: row;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: [start] 1fr [center content] 1fr [end];
+  }
+  
+  @media (max-width: 548px) {
+    grid-template-columns: [start content] 1fr [end];
+  }
+
+  & .teamate-feedback-item {
+    grid-column-start: center;
+    grid-column-end: end;
+    
+    display:grid;
+    grid-template-columns: [start] 1fr [content] 2fr [end];
+    grid-auto-flow: row;
+    
+    
+    & .job-title {
+      grid-column-start: start;
+      grid-column-end: content;
+      padding-right: var(--gap-m);
+      & a, & p {
+        margin-bottom: 0;
+      }
+    }
+    
+    & .profile, & .feedback-text {
+      grid-column-start: content;
+      grid-column-end: end;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    & .profile {
+      & figure {
+        width: 25%;
+        aspect-ratio: 1;
+        margin-bottom: calc(var(--density) * 0.4em);
+        & img.avatar {
+          display: block;
+          width: 100%;
+          aspect-ratio: 1;
+          object-fit: cover;
+        }
+      }
+    }
   }
 }
