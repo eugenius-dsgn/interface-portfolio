@@ -115,9 +115,6 @@
       grid-column-start: start;
       grid-column-end: content;
       padding-right: var(--gap-m);
-      & a, & p {
-        margin-bottom: 0;
-      }
     }
     
     & .profile, & .feedback-text {
@@ -133,12 +130,85 @@
       & figure {
         width: 25%;
         aspect-ratio: 1;
-        margin-bottom: calc(var(--density) * 0.4em);
+        margin-bottom: calc(var(--density) * 0.2em);
         & img.avatar {
           display: block;
           width: 100%;
           aspect-ratio: 1;
           object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+#experience-resume {
+  display: grid;
+  grid-template-columns: [start] 1fr [end];
+  grid-auto-flow: row;
+  row-gap: var(--gap-l);
+  
+  & .experience-resume-item {
+    display: grid;
+    grid-template-columns: [start] 0.5fr 2.5fr [center] 1fr [content] repeat(2, 1fr) [end];
+    grid-auto-flow: row;
+    
+    @media (max-width: 768px) {
+      grid-template-columns:;
+    }
+    @media (max-width: 548px) {
+      grid-template-columns:;
+    }
+    padding-top: var(--gap-m);
+    border-top: var(--border-width-m) solid var(--on-surface);
+    
+    & .company-logo {
+      grid-column-start: start;
+      grid-column-end: 2;
+      display: block;
+      & img, & svg {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+      }
+    }
+
+    & .company-info {
+      grid-column-start: 2;
+      grid-column-end: center;
+      display: flex;
+      flex-direction: column;
+      padding: 0 var(--gap-m);
+      & .company-title {
+        font-weight: var(--font-weight-emphasis);  
+      }
+    }
+
+    & .experience-text-wrapper {
+      grid-column-start: center;
+      grid-column-end: end;
+      display:grid;
+      grid-template-columns: [start] 1fr [content] 2fr [end];
+      grid-auto-flow: row;
+      
+      & .work-format {
+        grid-column-start: start;
+        grid-column-end: content;
+        display: flex;
+        flex-direction: column;
+        padding-right: var(--gap-m);
+
+        & .work-format-item {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          gap: calc(var(--density) * 0.2em);;
+          & svg {
+            width: 16px;
+            height: 16px;
+          }
         }
       }
     }

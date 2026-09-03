@@ -65,9 +65,12 @@ p {
   margin-top: 0;
   margin-bottom: calc(var(--density) * 0.4em);
 
+  &.margin-free {
+    margin: 0;
+  }
+
   &.indent {
     text-indent: hanging var(--paragraph-indent);
-    margin-bottom:0;
   } 
 
   &.loud {
@@ -116,6 +119,10 @@ a {
     transition:
       color var(--duration-instant) var(--easing-base),
       text-decoration var(--duration-instant) var(--easing-base);
+  }
+
+  &.margin-free {
+    margin: 0;
   }
 }
 
@@ -184,3 +191,6 @@ button {
   }
 }
     
+.icon {
+ fill: var(--on-surface-variant);
+}
