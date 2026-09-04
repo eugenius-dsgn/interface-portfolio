@@ -89,7 +89,7 @@ const getExpDatePeriodDuration = function (startDate, endDate) {
   const durationInMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 + endDate.getMonth() - startDate.getMonth();
   const years = Math.floor(durationInMonths / 12);
   const months = durationInMonths % 12;
-
+  
   return {
     years,
     months
@@ -148,3 +148,40 @@ icerockExpDatePeriods[0].textContent = getExpDatePeriodText('icerockDevLast');
 icerockExpDatePeriods[1].textContent = getExpDatePeriodText('icerockDevFirst');
 atfExpDatePeriod.textContent = getExpDatePeriodText('alientTechFusion');
 dylExpDatePeriod.textContent = getExpDatePeriodText('designYourLife');
+
+
+/*Personality-images-belt-parallax*/
+
+const personalityWrapper = document.querySelector('#personality');
+const imagesBelt = personalityWrapper.querySelector('.personality-images-belt');
+const imagesGroup = personalityWrapper.querySelector('.personality-images-group');
+
+let beltGap = imagesGroup.offsetHeight / 3;
+imagesBelt.style.gap = `${beltGap}px`;
+
+let initialBeltTopOffest = (imagesGroup.offsetHeight / 3)*3;
+imagesBelt.style.transform = `translateY(${initialBeltTopOffest}px)`;
+
+const updateImagesBeltOffest = function() {
+  let rectWrapper = personalityWrapper.getBoundingClientRect();
+  let progress = Math.min(Math.max((window.innerHeight - rectWrapper.top) / rectWrapper.height, 0), 1);
+  let beltMaxOffest = Math.max(imagesBelt.offsetHeight - personalityWrapper.offsetHeight, 0);
+  let beltCurrentOffset = initialBeltTopOffest - progress * (beltMaxOffest + initialBeltTopOffest);
+
+  imagesBelt.style.transform = `translateY(${beltCurrentOffset}px)`;
+};
+
+let imagesBeltOffestTicking = false;
+
+document.addEventListener('scroll', function() {
+  if (imagesBeltOffestTicking) {
+    return;
+  }
+  imagesBeltOffestTicking = true;
+  requestAnimationFrame(function() {
+    updateImagesBeltOffest();
+    imagesBeltOffestTicking = false;
+  });
+});
+
+updateImagesBeltOffest(); 
