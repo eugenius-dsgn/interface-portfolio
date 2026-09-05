@@ -265,9 +265,6 @@
 }
 
 .footer {
-  position: fixed;
-  inset: auto 0 0 0;
-  z-index: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
