@@ -3,24 +3,38 @@
 }
 
 body {
+  position: relative;
   margin: 0;
   color: var(--on-surface);
-  background-color: var(--surface);
+  background-color: none;
   scroll-behavior: smooth;
   
   &.is-loading {
     overflow: hidden;
     height: 100vh;
     touch-action: none;
-
+    
     & .video-player {
       pointer-events: none;
     }
   }
 }
 
+.main-wrapper {
+  position: relative;
+  background-color: var(--surface);
+  z-index: 1;
+}
+
 figure {
   margin: 0;
+}
+
+.avatar {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
 }
 
 video {
@@ -73,8 +87,8 @@ p {
     text-indent: hanging var(--paragraph-indent);
   } 
 
-  &.loud {
-    font-size: 2.25em;
+  &.large {
+    font-size: 1.5em;
     line-height: 1.2;
   }
 
@@ -112,17 +126,31 @@ a {
   transition:
   color var(--duration-fast) var(--easing-base),
   text-decoration var(--duration-fast) var(--easing-base);
-
+  
   &:hover {
     color: var(--primary);
+    fill: var(--primary);
     text-decoration-color: var(--primary);
     transition:
-      color var(--duration-instant) var(--easing-base),
-      text-decoration var(--duration-instant) var(--easing-base);
+    color var(--duration-instant) var(--easing-base),
+    text-decoration var(--duration-instant) var(--easing-base);
   }
-
+  
   &.margin-free {
     margin: 0;
+  }
+  
+  &.button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.2em;
+    margin: 0;
+    text-decoration: none;
+    & .icon {
+      width: 16px;
+      height: 16px;
+    }
   }
 }
 
@@ -192,5 +220,15 @@ button {
 }
     
 .icon {
- fill: var(--on-surface-variant);
+  fill: var(--on-surface-variant);
+  transition: fill var(--duration-fast) var(--easing-base);
+}
+
+a:hover .icon {
+  fill: var(--primary);
+  transition: fill var(--duration-instant) var(--easing-base);
+}
+
+.available {
+  color: var(--available);
 }

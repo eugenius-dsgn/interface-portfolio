@@ -124,3 +124,7 @@
         }
     }
 }
+
+.personality-images-belt {
+    will-change: transform;
+}
